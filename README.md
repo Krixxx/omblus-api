@@ -1,6 +1,9 @@
 ## Simple API - get/create/delete users, users can edit their work statuses.
 
-***WORKING***
+Back-end: Spring Boot<br>
+Database: PostgreSQL
+
+***WORKING FUNCTIONALITY***
 
 Endpoints:
 
@@ -14,13 +17,15 @@ Endpoints:
 
 Endpoints:
 
-- GET /api/v1/works // Get all works - for admin dashboard
-- PUT /api/v1/works/{id} // Edit work by sending userId - for users 
+- GET /api/v1/workers // Get all works - for admin dashboard
+- PUT /api/v1/workers/{id} // Edit work by sending userId - for users 
 
 New work line is created at the same time when user is created.<br>
-New work line is also delete for the user, when user is deleted.
+New work line is also deleted, when user is deleted.
 
-Get all works endpoint should have live data possibility, so admin
-dashboard is updated live. One possibility is to use Websocket.
+"Get all workers" endpoint should have live data possibility, so admin
+dashboard is updated live. <br>
+One possibility is to use Websocket. Must search for more information
+
 
 To be continued...
