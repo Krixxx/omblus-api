@@ -51,18 +51,21 @@ public class AppUserService {
 
         boolean exists = appUserRepository.existsById(userId);
 
-        Optional<AppUser> userToBeDeleted = appUserRepository.findById(userId);
-
         if(!exists){
             throw new IllegalStateException("user with ID " + userId + " does not exist");
         }
 
-        //TODO - delete activeWorker line, if user role is "worker"
-        //deleting user from AppUser database works, but I must also get working deletion from ActiveWorker database
+        //get AppUser data for given ID
+        AppUser appUser = appUserRepository.getById(userId);
 
-//        if(userToBeDeleted.get().getRole().contains("worker")){
-//            activeWorkerRepository.deleteByUserId(userToBeDeleted.get().getUserId());
-//        }
+        //"Active_Worker" table line id for user which we want to delete from database
+        Long activeUserId = activeWorkerRepository.getUserByUserId(appUser.getUserId()).getId();
+
+        //delete activeWorker line, if user role is "worker"
+
+        if(appUser.getRole().contains("worker")){
+            activeWorkerRepository.deleteById(activeUserId);
+        }
 
         appUserRepository.deleteById(userId);
     }
