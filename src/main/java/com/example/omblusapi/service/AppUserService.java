@@ -27,13 +27,13 @@ public class AppUserService {
         return appUserRepository.findAll();
     }
 
-    public AppUser getUserByUserId(String userId){
-         return appUserRepository.getUserByUserId(userId);
+    public AppUser getUserByUsername(String username){
+         return appUserRepository.getUserByUsername(username);
     }
 
     public AppUser createNewAppUser(AppUser appUser){
 
-        Optional<AppUser> appUserOptional = appUserRepository.findUserByUserId(appUser.getUserId());
+        Optional<AppUser> appUserOptional = appUserRepository.findUserByUsername(appUser.getUsername());
 
         if(appUserOptional.isPresent()){
             throw new IllegalStateException("user with same user ID is already created");
@@ -41,7 +41,7 @@ public class AppUserService {
 
         //Save new activeWorker line, is new worker role is "worker"
         if(appUser.getRole().contains("worker")){
-            activeWorkerRepository.save(new ActiveWorker(appUser.getUserId()));
+            activeWorkerRepository.save(new ActiveWorker(appUser.getUsername()));
         }
 
         return appUserRepository.save(appUser);
@@ -58,13 +58,15 @@ public class AppUserService {
         //get AppUser data for given ID
         AppUser appUser = appUserRepository.getById(userId);
 
-        //"Active_Worker" table line id for user which we want to delete from database
-        Long activeUserId = activeWorkerRepository.getUserByUserId(appUser.getUserId()).getId();
 
         //delete activeWorker line, if user role is "worker"
-
         if(appUser.getRole().contains("worker")){
+
+            //"Active_Worker" table line id for user which we want to delete from database
+            Long activeUserId = activeWorkerRepository.getUserByUsername(appUser.getUsername()).getId();
+
             activeWorkerRepository.deleteById(activeUserId);
+
         }
 
         appUserRepository.deleteById(userId);

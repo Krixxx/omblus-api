@@ -6,7 +6,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 
 
 @Entity(name="ActiveWorker")
-@Table(name="active_worker", uniqueConstraints = {@UniqueConstraint(name="active_worker_user_id_unique", columnNames = "user_id")})
+@Table(name="active_worker", uniqueConstraints = {@UniqueConstraint(name="active_worker_username_unique", columnNames = "username")})
 public class ActiveWorker {
 
     @Id
@@ -15,8 +15,8 @@ public class ActiveWorker {
     @Column(name="id", updatable = false)
     private Long id;
 
-    @Column(name="user_id", updatable = false, nullable = false, columnDefinition = "TEXT")
-    private String userId;
+    @Column(name="username", updatable = false, nullable = false, columnDefinition = "TEXT")
+    private String username;
 
     @Column(name="is_working", nullable = false, columnDefinition = "boolean default true")
     private Boolean isWorking = true;
@@ -31,8 +31,8 @@ public class ActiveWorker {
     public ActiveWorker() {
     }
 
-    public ActiveWorker(String userId) {
-        this.userId = userId;
+    public ActiveWorker(String username) {
+        this.username = username;
     }
 
     public Long getId() {
@@ -43,12 +43,12 @@ public class ActiveWorker {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Boolean getWorking() {
@@ -79,7 +79,7 @@ public class ActiveWorker {
     public String toString() {
         return "ActiveWorker{" +
                 "id=" + id +
-                ", userId='" + userId + '\'' +
+                ", username='" + username + '\'' +
                 ", isWorking=" + isWorking +
                 ", isAlert=" + isAlert +
                 ", isLoggedIn=" + isLoggedIn +

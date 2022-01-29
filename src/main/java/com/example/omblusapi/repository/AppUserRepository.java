@@ -14,10 +14,10 @@ import java.util.Optional;
 public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 
     //special query, which returns AppUser object. For getting single user data
-    @Query("SELECT s FROM AppUser s WHERE s.userId = ?1")
-     AppUser getUserByUserId(String userId);
+    @Query("SELECT s FROM AppUser s WHERE s.username = ?1")
+     AppUser getUserByUsername(String username);
 
     //basically same query as before, but for checking user existence
-    @Query("SELECT s FROM AppUser s WHERE s.userId = ?1")
-    Optional<AppUser> findUserByUserId(String userId);
+    @Query("SELECT s FROM AppUser s WHERE s.username = ?1")
+    Optional<AppUser> findUserByUsername(String username);
 }

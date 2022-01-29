@@ -27,10 +27,10 @@ public class AppUserController {
         return ResponseEntity.ok().body(appUserService.getAllAppUsers());
     }
 
-    //this path takes in userId, NOT AppUser id.
-    @GetMapping(path="{userId}")
-    public ResponseEntity<AppUser> getUserByUserId(@PathVariable String userId){
-        return ResponseEntity.ok().body(appUserService.getUserByUserId(userId));
+    //this path takes in username, NOT AppUser id.
+    @GetMapping(path="{username}")
+    public ResponseEntity<AppUser> getUserByUserId(@PathVariable String username){
+        return ResponseEntity.ok().body(appUserService.getUserByUsername(username));
     }
 
     @PostMapping

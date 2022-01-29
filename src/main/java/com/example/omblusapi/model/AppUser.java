@@ -10,7 +10,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 
 
 @Entity(name="AppUser")
-@Table(name="app_user", uniqueConstraints = {@UniqueConstraint(name="app_user_id_unique", columnNames = "user_id")})
+@Table(name="app_user", uniqueConstraints = {@UniqueConstraint(name="app_username_unique", columnNames = "username")})
 public class AppUser {
 
     //We can specify properties of each column by annotating @Column and then parameters
@@ -29,8 +29,8 @@ public class AppUser {
     @Column(name="id",updatable = false)
     private Long id;
 
-    @Column(name="user_id", nullable = false, columnDefinition = "TEXT")
-    private String userId;
+    @Column(name="username", nullable = false, columnDefinition = "TEXT")
+    private String username;
 
     @Column(name="password", nullable = false, columnDefinition = "TEXT")
     private String password;
@@ -41,8 +41,8 @@ public class AppUser {
     public AppUser() {
     }
 
-    public AppUser(String userId, String password, String role) {
-        this.userId = userId;
+    public AppUser(String username, String password, String role) {
+        this.username = username;
         this.password = password;
         this.role = role;
     }
@@ -56,12 +56,12 @@ public class AppUser {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -84,7 +84,7 @@ public class AppUser {
     public String toString() {
         return "AppUser{" +
                 "id=" + id +
-                ", userId='" + userId + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 '}';
