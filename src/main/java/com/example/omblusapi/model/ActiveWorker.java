@@ -4,7 +4,6 @@ import javax.persistence.*;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
-//
 
 @Entity(name="ActiveWorker")
 @Table(name="active_worker", uniqueConstraints = {@UniqueConstraint(name="active_worker_user_id_unique", columnNames = "user_id")})
@@ -32,8 +31,7 @@ public class ActiveWorker {
     public ActiveWorker() {
     }
 
-    public ActiveWorker(Long id, String userId, Boolean isWorking, Boolean isAlert, Boolean isLoggedIn) {
-        this.id = id;
+    public ActiveWorker(String userId, Boolean isWorking, Boolean isAlert, Boolean isLoggedIn) {
         this.userId = userId;
         this.isWorking = isWorking;
         this.isAlert = isAlert;
