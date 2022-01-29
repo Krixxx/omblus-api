@@ -1,14 +1,18 @@
 ## Simple API - get/create/delete users, users can edit their work statuses.
 
-***TODO***:
+***WORKING***
 
 Endpoints:
 
 - GET /api/v1/users // Get all users - for admin
-- GET /api/v1/users/{id} // Get single user by id
+- GET /api/v1/users/{id} // Get single user by userId
 - POST /api/v1/users // Create new user - for admin
 - DELETE /api/v1/users/{id] // Delete user by userId - for admin
 
+
+***TODO***:
+
+Endpoints:
 
 - GET /api/v1/works // Get all works - for admin dashboard
 - PUT /api/v1/works/{id} // Edit work by sending userId - for users 

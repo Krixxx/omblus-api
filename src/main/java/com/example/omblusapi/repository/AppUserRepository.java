@@ -5,8 +5,19 @@ package com.example.omblusapi.repository;
 
 import com.example.omblusapi.model.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 @Repository
 public interface AppUserRepository extends JpaRepository<AppUser, Long> {
+
+    //special query, which returns AppUser object. For getting single user data
+    @Query("SELECT s FROM AppUser s WHERE s.userId = ?1")
+     AppUser getUserByUserId(String userId);
+
+    //basically same query as before, but for checking user existence
+    @Query("SELECT s FROM AppUser s WHERE s.userId = ?1")
+    Optional<AppUser> findUserByUserId(String userId);
 }
