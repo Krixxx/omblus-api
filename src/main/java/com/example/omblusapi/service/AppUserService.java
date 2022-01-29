@@ -1,9 +1,10 @@
 package com.example.omblusapi.service;
 
+import com.example.omblusapi.model.ActiveWorker;
 import com.example.omblusapi.model.AppUser;
+import com.example.omblusapi.repository.ActiveWorkerRepository;
 import com.example.omblusapi.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,14 +14,14 @@ import java.util.Optional;
 public class AppUserService {
 
     private final AppUserRepository appUserRepository;
+    private final ActiveWorkerRepository activeWorkerRepository;
 
     //@Autowired is used for dependency injection
-
     @Autowired
-    public AppUserService(AppUserRepository appUserRepository) {
+    public AppUserService(AppUserRepository appUserRepository, ActiveWorkerRepository activeWorkerRepository) {
         this.appUserRepository = appUserRepository;
+        this.activeWorkerRepository = activeWorkerRepository;
     }
-
 
     public List<AppUser> getAllAppUsers(){
         return appUserRepository.findAll();
@@ -38,6 +39,11 @@ public class AppUserService {
             throw new IllegalStateException("user with same user ID is already created");
         }
 
+        //Save new activeWorker line, is new worker role is "worker"
+        if(appUser.getRole().contains("worker")){
+            activeWorkerRepository.save(new ActiveWorker(appUser.getUserId()));
+        }
+
         return appUserRepository.save(appUser);
     }
 
@@ -45,9 +51,18 @@ public class AppUserService {
 
         boolean exists = appUserRepository.existsById(userId);
 
+        Optional<AppUser> userToBeDeleted = appUserRepository.findById(userId);
+
         if(!exists){
             throw new IllegalStateException("user with ID " + userId + " does not exist");
         }
+
+        //TODO - delete activeWorker line, if user role is "worker"
+        //deleting user from AppUser database works, but I must also get working deletion from ActiveWorker database
+
+//        if(userToBeDeleted.get().getRole().contains("worker")){
+//            activeWorkerRepository.deleteByUserId(userToBeDeleted.get().getUserId());
+//        }
 
         appUserRepository.deleteById(userId);
     }

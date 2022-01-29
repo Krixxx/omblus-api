@@ -19,23 +19,20 @@ public class ActiveWorker {
     private String userId;
 
     @Column(name="is_working", nullable = false, columnDefinition = "boolean default true")
-    private Boolean isWorking;
+    private Boolean isWorking = true;
 
     @Column(name="is_alert", nullable = false, columnDefinition = "boolean default false")
-    private Boolean isAlert;
+    private Boolean isAlert = false;
 
     @Column(name="is_logged_in", nullable = false, columnDefinition = "boolean default false")
-    private Boolean isLoggedIn;
+    private Boolean isLoggedIn = false;
 
 
     public ActiveWorker() {
     }
 
-    public ActiveWorker(String userId, Boolean isWorking, Boolean isAlert, Boolean isLoggedIn) {
+    public ActiveWorker(String userId) {
         this.userId = userId;
-        this.isWorking = isWorking;
-        this.isAlert = isAlert;
-        this.isLoggedIn = isLoggedIn;
     }
 
     public Long getId() {
