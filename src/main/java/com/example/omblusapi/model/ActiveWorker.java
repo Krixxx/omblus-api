@@ -31,6 +31,13 @@ public class ActiveWorker {
     public ActiveWorker() {
     }
 
+    public ActiveWorker(String username, Boolean isWorking, Boolean isAlert, Boolean isLoggedIn) {
+        this.username = username;
+        this.isWorking = isWorking;
+        this.isAlert = isAlert;
+        this.isLoggedIn = isLoggedIn;
+    }
+
     public ActiveWorker(String username) {
         this.username = username;
     }

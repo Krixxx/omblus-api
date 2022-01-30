@@ -4,10 +4,7 @@ import com.example.omblusapi.model.ActiveWorker;
 import com.example.omblusapi.service.ActiveWorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +27,11 @@ public class ActiveWorkerController {
     @GetMapping(path="{username}")
     public ResponseEntity<ActiveWorker> getWorkerByUsername(@PathVariable String username){
         return ResponseEntity.ok().body(activeWorkerService.getWorkerByUsername(username));
+    }
+
+    @PutMapping(path="{username}")
+    public ResponseEntity<Object> updateWorker(@PathVariable String username, @RequestBody ActiveWorker updatedWorker){
+        return ResponseEntity.ok().body(activeWorkerService.updateWorkerStatus(username, updatedWorker));
     }
 
 }
