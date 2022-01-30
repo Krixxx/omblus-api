@@ -20,4 +20,8 @@ public class ActiveWorkerService {
     public List<ActiveWorker> getAllActiveWorkers(){
         return activeWorkerRepository.findAll();
     }
+
+    public ActiveWorker getWorkerByUsername(String username){
+        return activeWorkerRepository.getActiveWorkerByUsername(username);
+    }
 }

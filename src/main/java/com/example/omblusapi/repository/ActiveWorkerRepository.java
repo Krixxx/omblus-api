@@ -13,5 +13,5 @@ public interface ActiveWorkerRepository extends JpaRepository<ActiveWorker, Long
 
     //special query, which returns ActiveWorker object. For getting single worker data
     @Query("SELECT s FROM ActiveWorker s WHERE s.username = ?1")
-    ActiveWorker getUserByUsername(String username);
+    ActiveWorker getActiveWorkerByUsername(String username);
 }

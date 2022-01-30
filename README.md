@@ -8,17 +8,17 @@ Database: PostgreSQL
 Endpoints:
 
 - GET /api/v1/users // Get all users - for admin
-- GET /api/v1/users/{id} // Get single user by userId
+- GET /api/v1/users/{username} // Get single user by username
 - POST /api/v1/users // Create new user - for admin
-- DELETE /api/v1/users/{id] // Delete user by userId - for admin
+- DELETE /api/v1/users/{id] // Delete user by user Id - for admin
+- GET /api/v1/workers // Get all works - for admin dashboard
+- GET /api/v1/workers/{username} // Get single work - for users
 
 
 ***TODO***:
 
 Endpoints:
-
-- GET /api/v1/workers // Get all works - for admin dashboard
-- PUT /api/v1/workers/{id} // Edit work by sending userId - for users 
+- PUT /api/v1/workers/{username} // Edit work by sending username - for users 
 
 New work line is created at the same time when user is created.<br>
 New work line is also deleted, when user is deleted.

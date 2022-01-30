@@ -63,7 +63,7 @@ public class AppUserService {
         if(appUser.getRole().contains("worker")){
 
             //"Active_Worker" table line id for user which we want to delete from database
-            Long activeUserId = activeWorkerRepository.getUserByUsername(appUser.getUsername()).getId();
+            Long activeUserId = activeWorkerRepository.getActiveWorkerByUsername(appUser.getUsername()).getId();
 
             activeWorkerRepository.deleteById(activeUserId);
 
