@@ -31,10 +31,16 @@ public class ActiveWorkerService {
 
         ActiveWorker currentWorker = activeWorkerRepository.getActiveWorkerByUsername(username);
 
+        boolean exists = activeWorkerRepository.existsById(currentWorker.getId());
+
+        if(!exists){
+            throw new IllegalStateException("User with username " + username + " does not exist");
+        }
+
         currentWorker.setAlert(activeWorker.getAlert());
         currentWorker.setWorking(activeWorker.getWorking());
         currentWorker.setLoggedIn(activeWorker.getLoggedIn());
 
-        return currentWorker;
+        return activeWorkerRepository.save(currentWorker);
     }
 }

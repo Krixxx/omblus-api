@@ -28,6 +28,7 @@ public class AppUserService {
     }
 
     public AppUser getUserByUsername(String username){
+
          return appUserRepository.getUserByUsername(username);
     }
 

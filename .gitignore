@@ -13,8 +13,11 @@ target/
 .springBeans
 .sts4-cache
 
-### Application properties
-/src/main/resources/application.properties
+### Application properties ###
+src/main/resources/application.properties
+
+### Dockerfile ###
+Dockerfile
 
 ### IntelliJ IDEA ###
 .idea
