@@ -20,4 +20,10 @@ public interface AppUserRepository extends JpaRepository<AppUser, Long> {
     //basically same query as before, but for checking user existence
     @Query("SELECT s FROM AppUser s WHERE s.username = ?1")
     Optional<AppUser> findUserByUsername(String username);
+
+    //Actually these methods are not correct. If we want to create custom findBy methods,
+    // we must use entity property names.
+    //And if we have mapped data (@ManyToOne, @OneToMany, @OneToOne) then we must use referenced class properties
+    // even further. for example if we have mapped user with wield id to our worker, then we must use findByUserId(...).
+
 }

@@ -28,7 +28,6 @@ public class AppUserController {
     }
 
     //this path takes in username, NOT AppUser id.
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="{username}")
     public ResponseEntity<AppUser> getUserByUserId(@PathVariable String username){
 

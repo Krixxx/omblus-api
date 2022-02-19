@@ -19,7 +19,6 @@ public class ActiveWorkerController {
         this.activeWorkerService = activeWorkerService;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public ResponseEntity<List<ActiveWorker>> getAllActiveWorkers(){
         return ResponseEntity.ok().body(activeWorkerService.getAllActiveWorkers());
@@ -30,7 +29,6 @@ public class ActiveWorkerController {
         return ResponseEntity.ok().body(activeWorkerService.getWorkerByUsername(username));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping(path="{username}")
     public ResponseEntity<Object> updateWorker(@PathVariable String username, @RequestBody ActiveWorker updatedWorker){
         return ResponseEntity.ok().body(activeWorkerService.updateWorkerStatus(username, updatedWorker));

@@ -6,6 +6,8 @@ services:
       - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=mysecretpassword
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
   omblus-api:
     image: omblus-api:1.0
     ports:
@@ -15,3 +17,6 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=mysecretpassword
+volumes:
+  postgres-data:
+    driver: local
